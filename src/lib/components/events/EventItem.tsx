@@ -49,10 +49,12 @@ const EventItem = ({
     resourceFields,
     locale,
     viewerTitleComponent,
+    readonly,
   } = useAppState();
   const [anchorEl, setAnchorEl] = useState<Element | null>(null);
   const [deleteConfirm, setDeleteConfirm] = useState(false);
   const theme = useTheme();
+  const allowDelete = !readonly && !!onDelete;
 
   const NextArrow =
     direction === "rtl" ? ArrowLeftRoundedIcon : ArrowRightRoundedIcon;
@@ -171,7 +173,7 @@ const EventItem = ({
               </IconButton>
             </div>
             <div style={{ display: "inherit" }}>
-              <IconButton
+              {!readonly && (<IconButton
                 size="small"
                 style={{ color: theme.palette.primary.contrastText }}
                 onClick={() => {
@@ -180,8 +182,8 @@ const EventItem = ({
                 }}
               >
                 <EditRoundedIcon />
-              </IconButton>
-              {!deleteConfirm && (
+              </IconButton>)}
+              {(!deleteConfirm && allowDelete) && (
                 <IconButton
                   size="small"
                   style={{ color: theme.palette.primary.contrastText }}
@@ -191,7 +193,7 @@ const EventItem = ({
                 </IconButton>
               )}
               <Slide
-                in={deleteConfirm}
+                in={deleteConfirm && allowDelete}
                 direction={direction === "rtl" ? "right" : "left"}
                 mountOnEnter
                 unmountOnExit

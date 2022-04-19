@@ -1,6 +1,6 @@
 {
-  "name": "@aldabil/react-scheduler",
-  "version": "2.2.1",
+  "name": "@arshadrao/react-scheduler",
+  "version": "3.0.1",
   "description": "React scheduler component based on Material-UI & date-fns",
   "main": "./dist/Scheduler.js",
   "//types": "./dist/index.d.ts",
@@ -9,11 +9,12 @@
   ],
   "scripts": {
     "start": "react-scripts start",
-    "pack": "webpack"
+    "pack": "webpack",
+    "build": "webpack --config webpack.config.js"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/aldabil21/react-scheduler.git"
+    "url": "https://github.com/arshadrao/react-scheduler.git"
   },
   "keywords": [
     "react",
@@ -23,10 +24,7 @@
   ],
   "author": "Aldabil",
   "license": "MIT",
-  "//homepage": "https://github.com/aldabil21/react-scheduler#readme",
-  "bugs": {
-    "url": "https://github.com/aldabil21/react-scheduler/issues"
-  },
+  "//homepage": "https://github.com/arshadrao/react-scheduler#readme",
   "devDependencies": {
     "@emotion/react": "^11.7.1",
     "@emotion/styled": "^11.6.0",

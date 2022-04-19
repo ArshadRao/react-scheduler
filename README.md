@@ -1,18 +1,17 @@
 # React Scheduler Component
 
-[![npm package](https://img.shields.io/npm/v/@aldabil/react-scheduler/latest.svg)](https://www.npmjs.com/package/@aldabil/react-scheduler)
-[![Twitter URL](https://img.shields.io/twitter/url?label=%40aldabil&style=social&url=https%3A%2F%2Ftwitter.com%2Fintent%2Ffollow%3Fscreen_name%3Daldabil21)](https://twitter.com/intent/follow?screen_name=aldabil21)
+[![npm package](https://img.shields.io/npm/v/@arshadrao/react-scheduler/latest.svg)](https://www.npmjs.com/package/@arshadrao/react-scheduler)
 
 ## Installation
 
 ```jsx
-npm i @aldabil/react-scheduler
+npm i @arshadrao/react-scheduler
 ```
 
 ## Usage
 
 ```jsx
-import { Scheduler } from "@aldabil/react-scheduler";
+import { Scheduler } from "@arshadrao/react-scheduler";
 ```
 
 ## Example

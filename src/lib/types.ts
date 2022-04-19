@@ -138,6 +138,10 @@ export interface SchedulerProps {
    * @default 600
    */
   height: number;
+  /** Readonly */
+  readonly: boolean;
+  /** Disable Title */
+  disableTitle: boolean;
   /** Initial view to load */
   view: View;
   /**Month view settings */

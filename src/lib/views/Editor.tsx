@@ -36,6 +36,7 @@ export type StateEvent = (ProcessedEvent & SelectedRange) | Record<string, any>;
 
 const initialState = (
   fields: FieldProps[],
+  disableTitle: boolean,
   event?: StateEvent
 ): Record<string, StateItem> => {
   const customFields = {} as Record<string, StateItem>;
@@ -63,7 +64,7 @@ const initialState = (
       value: event?.title || "",
       validity: !!event?.title,
       type: "input",
-      config: { label: "Title", required: true, min: 3 },
+      config: { label: "Title", required: !!disableTitle, min: 3, disabled: disableTitle, },
     },
     start: {
       value: event?.start || new Date(),
@@ -93,9 +94,10 @@ const Editor = () => {
     customEditor,
     confirmEvent,
     dialogMaxWidth,
+    disableTitle,
   } = useAppState();
   const [state, setState] = useState(
-    initialState(fields, selectedEvent || selectedRange)
+    initialState(fields, disableTitle, selectedEvent || selectedRange)
   );
   const [touched, setTouched] = useState(false);
   const theme = useTheme();
@@ -112,7 +114,7 @@ const Editor = () => {
 
   const handleClose = (clearState?: boolean) => {
     if (clearState) {
-      setState(initialState(fields));
+      setState(initialState(fields, disableTitle));
     }
     triggerDialog(false);
   };
@@ -131,9 +133,9 @@ const Editor = () => {
       body.end =
         body.start >= body.end
           ? addMinutes(
-              body.start,
-              differenceInMinutes(selectedRange?.end!, selectedRange?.start!)
-            )
+            body.start,
+            differenceInMinutes(selectedRange?.end!, selectedRange?.start!)
+          )
           : body.end;
       // Specify action
       const action: EventActions = selectedEvent?.event_id ? "edit" : "create";
@@ -209,7 +211,7 @@ const Editor = () => {
         <DialogTitle>{selectedEvent ? "Edit Event" : "Add Event"}</DialogTitle>
         <DialogContent style={{ overflowX: "hidden" }}>
           <Grid container spacing={1}>
-            {Object.keys(state).map((key) => {
+            {Object.keys(state).filter(key => !!state[key]).map((key) => {
               const item = state[key];
               return (
                 <Grid item key={key} sm={item.config?.sm} xs={12}>
