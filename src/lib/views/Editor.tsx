@@ -36,7 +36,7 @@ export type StateEvent = (ProcessedEvent & SelectedRange) | Record<string, any>;
 
 const initialState = (
   fields: FieldProps[],
-  disableTitle: boolean,
+  showTitle: boolean,
   event?: StateEvent
 ): Record<string, StateItem> => {
   const customFields = {} as Record<string, StateItem>;
@@ -62,9 +62,9 @@ const initialState = (
     },
     title: {
       value: event?.title || "",
-      validity: !!event?.title,
-      type: "input",
-      config: { label: "Title", required: !!disableTitle, min: 3, disabled: disableTitle, },
+      validity: showTitle ? !!event?.title : true,
+      type: showTitle ? "input" : "hidden",
+      config: showTitle ? { label: "Title", min: 3, required: true } : undefined,
     },
     start: {
       value: event?.start || new Date(),
@@ -94,10 +94,10 @@ const Editor = () => {
     customEditor,
     confirmEvent,
     dialogMaxWidth,
-    disableTitle,
+    showTitle,
   } = useAppState();
   const [state, setState] = useState(
-    initialState(fields, disableTitle, selectedEvent || selectedRange)
+    initialState(fields, showTitle, selectedEvent || selectedRange)
   );
   const [touched, setTouched] = useState(false);
   const theme = useTheme();
@@ -114,7 +114,7 @@ const Editor = () => {
 
   const handleClose = (clearState?: boolean) => {
     if (clearState) {
-      setState(initialState(fields, disableTitle));
+      setState(initialState(fields, showTitle));
     }
     triggerDialog(false);
   };

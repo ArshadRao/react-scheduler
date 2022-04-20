@@ -140,8 +140,8 @@ export interface SchedulerProps {
   height: number;
   /** Readonly */
   readonly: boolean;
-  /** Disable Title */
-  disableTitle: boolean;
+  /** Show Title */
+  showTitle: boolean;
   /** Initial view to load */
   view: View;
   /**Month view settings */

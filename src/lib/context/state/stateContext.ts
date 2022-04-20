@@ -37,7 +37,7 @@ export interface stateContext extends SchedulerState {
 export const defaultProps = {
   height: 600,
   readonly: false,
-  disableTitle: false,
+  showTitle: true,
   month: {
     weekDays: [0, 1, 2, 3, 4, 5],
     weekStartOn: 6,
