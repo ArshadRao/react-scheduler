@@ -27,7 +27,7 @@ const TodayEvents = ({
     <Fragment>
       {todayEvents.map((event, i) => {
         const height =
-          differenceInMinutes(event.end, event.start) * minuteHeight;
+          differenceInMinutes(event.end, event.start) * minuteHeight || 10 * minuteHeight;
         const minituesFromTop = differenceInMinutes(
           event.start,
           setHours(today, startHour)

@@ -142,6 +142,10 @@ export interface SchedulerProps {
   readonly: boolean;
   /** Show Title */
   showTitle: boolean;
+  /** Show Start Date */
+  showStartDate: boolean;
+  /** Show End Date */
+  showEndDate: boolean;
   /** Initial view to load */
   view: View;
   /**Month view settings */
@@ -171,8 +175,8 @@ export interface SchedulerProps {
   customEditor?(scheduler: SchedulerHelpers): JSX.Element;
   /**Additional component in event viewer popper */
   viewerExtraComponent?:
-    | JSX.Element
-    | ((fields: FieldProps[], event: ProcessedEvent) => JSX.Element);
+  | JSX.Element
+  | ((fields: FieldProps[], event: ProcessedEvent) => JSX.Element);
   /**Override viewer title component */
   viewerTitleComponent?(event: ProcessedEvent): JSX.Element;
   /**Resources array to split event views with resources */
@@ -204,4 +208,4 @@ export interface SchedulerProps {
     originalEvent: ProcessedEvent
   ): Promise<ProcessedEvent | void>;
 }
-export interface Scheduler extends Partial<SchedulerProps> {}
+export interface Scheduler extends Partial<SchedulerProps> { }

@@ -235,9 +235,9 @@ const EventItem = ({
             <EventNoteRoundedIcon />{" "}
             {`${format(event.start, "dd MMMM yyyy hh:mm a", {
               locale: locale,
-            })} - ${format(event.end, "dd MMMM yyyy hh:mm a", {
+            })} - ${event.end !== event.start ? format(event.end, "dd MMMM yyyy hh:mm a", {
               locale: locale,
-            })}`}
+            }): ''}`}
           </Typography>
           {hasResource.length > 0 && (
             <Typography

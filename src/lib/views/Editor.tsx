@@ -36,7 +36,7 @@ export type StateEvent = (ProcessedEvent & SelectedRange) | Record<string, any>;
 
 const initialState = (
   fields: FieldProps[],
-  showTitle: boolean,
+  { showTitle = true, showStartDate = true, showEndDate = true },
   event?: StateEvent
 ): Record<string, StateItem> => {
   const customFields = {} as Record<string, StateItem>;
@@ -69,14 +69,14 @@ const initialState = (
     start: {
       value: event?.start || new Date(),
       validity: true,
-      type: "date",
-      config: { label: "Start", sm: 6 },
+      type: showStartDate ? "date": "hidden",
+      config: showStartDate ? { label: "Start", sm: 6 } : undefined,
     },
     end: {
       value: event?.end || new Date(),
       validity: true,
-      type: "date",
-      config: { label: "End", sm: 6 },
+      type: showEndDate ?  "date" : "hidden",
+      config: showEndDate ? { label: "End", sm: 6 } : undefined,
     },
     ...customFields,
   };
@@ -95,9 +95,11 @@ const Editor = () => {
     confirmEvent,
     dialogMaxWidth,
     showTitle,
+    showStartDate,
+    showEndDate,
   } = useAppState();
   const [state, setState] = useState(
-    initialState(fields, showTitle, selectedEvent || selectedRange)
+    initialState(fields, { showTitle, showStartDate, showEndDate }, selectedEvent || selectedRange)
   );
   const [touched, setTouched] = useState(false);
   const theme = useTheme();
@@ -114,7 +116,7 @@ const Editor = () => {
 
   const handleClose = (clearState?: boolean) => {
     if (clearState) {
-      setState(initialState(fields, showTitle));
+      setState(initialState(fields, { showTitle, showStartDate, showEndDate }));
     }
     triggerDialog(false);
   };

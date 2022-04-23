@@ -38,6 +38,8 @@ export const defaultProps = {
   height: 600,
   readonly: false,
   showTitle: true,
+  showStartDate: true,
+  showEndDate: true,
   month: {
     weekDays: [0, 1, 2, 3, 4, 5],
     weekStartOn: 6,
